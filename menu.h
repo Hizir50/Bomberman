@@ -4,5 +4,6 @@
 
 
 void afficher_menu_pause();
+void afficher_menu_principale();
 
 #endif /* _MENU_H_ */
