@@ -21,28 +21,23 @@ int main(){
         
 
         while(!quitter) {
-                
-                MLV_clear_window(MLV_COLOR_BLACK);
                 deplacer_personnage(&p, 0, 0);
+                MLV_clear_window(MLV_COLOR_BLACK);
                 dessiner_personnage(p);
                 
 
-                if(MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED) {
+                if(MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED) {
                         quitter = 1;
                 }
-                
-
-                if(MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED) {
+                if(MLV_get_keyboard_state(MLV_KEYBOARD_m) == MLV_PRESSED) {
                         MLV_wait_milliseconds(35);
-                        if(MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_RELEASED) {
+                        if(MLV_get_keyboard_state(MLV_KEYBOARD_m) == MLV_RELEASED) {
                                 est_menu_ouvert = !est_menu_ouvert;
                         }
                 }
                 if (est_menu_ouvert) {
                         afficher_menu_pause();
                 }
-
-                
                 MLV_actualise_window();
                 MLV_delay_according_to_frame_rate();
         }

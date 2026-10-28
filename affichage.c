@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "affichage.h"
 #include "personnage.h"
+#include "bombe.h"
 
 
 void dessiner_personnage(Personnage p) {
@@ -14,4 +15,3 @@ void afficher_fenetre_principale() {
     );
 
 }
-

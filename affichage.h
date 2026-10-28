@@ -1,6 +1,7 @@
 #ifndef _AFFICHAGE_H_
 #define _AFFICHAGE_H_
 #include "personnage.h"
+#include "bombe.h"
 #include <MLV/MLV_all.h>
 
 /*TAILLE FENETRE*/
