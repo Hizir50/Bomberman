@@ -1,26 +1,34 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <MLV/MLV_all.h>
 #include "affichage.h"
 #include "personnage.h"
+#include "generation.h"
 
 #define FPS 60
 
 
 int main(){
         int quitter = 0;
+        Plateau plateau;
         Personnage p = creer_personnage(100, 100);
         afficher_fenetre_principale();
 
         MLV_change_frame_rate(FPS);
 
-        
+       
+        initialiser_plateau(&plateau);
+        ecrire_case(&plateau, 0, 0, MUR_INDESTRUCTIBLE);
+        ecrire_case(&plateau, 3, 4, MUR_DESTRUCTIBLE);
+        ecrire_case(&plateau, 5, 4, MUR_DESTRUCTIBLE);
 
         while(!quitter) {
                 deplacer_personnage(&p, 0, 0);
 
                 MLV_clear_window(MLV_COLOR_BLACK);
-                
+
+                dessiner_plateau(&plateau);
                 dessiner_personnage(p);
 
                 MLV_actualise_window();
@@ -31,9 +39,9 @@ int main(){
                         quitter = 1;
                 }
         }
-        
+
         MLV_free_window();
-        
+
         return 0;
 }
 
