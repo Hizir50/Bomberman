@@ -13,8 +13,11 @@
 void afficher_fenetre_principale();
 void dessiner_personnage(Personnage p);
 
-/* Taille (en pixels) d'une case du plateau. */
-int taille_case();
+/* Taille de la fenetre et d'une case (en pixels) : la grille remplit toute la fenetre. */
+int largeur_fenetre();
+int hauteur_fenetre();
+int largeur_case();
+int hauteur_case();
 
 /* Couleur d'affichage associee a un type de case. */
 MLV_Color couleur_case(TypeCase type);

@@ -7,7 +7,8 @@
 typedef enum {
     CASE_LIBRE,          /* le joueur peut s'y deplacer                  */
     MUR_INDESTRUCTIBLE,  /* bloque le joueur et les explosions           */
-    MUR_DESTRUCTIBLE     /* bloque le joueur, detruit par une explosion  */
+    MUR_DESTRUCTIBLE,    /* bloque le joueur, detruit par une explosion  */
+    LIMITE_NIVEAU         /* limite le niveau, bloque le joueur et les explosions */
 } TypeCase;
 
 typedef struct {
@@ -26,5 +27,7 @@ TypeCase lire_case(const Plateau *p, int colonne, int ligne);
 
 
 void ecrire_case(Plateau *p, int colonne, int ligne, TypeCase type);
+
+void level1(Plateau *p);
 
 #endif /* _GENERATION_H_ */

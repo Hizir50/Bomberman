@@ -19,9 +19,6 @@ int main(){
 
        
         initialiser_plateau(&plateau);
-        ecrire_case(&plateau, 0, 0, MUR_INDESTRUCTIBLE);
-        ecrire_case(&plateau, 3, 4, MUR_DESTRUCTIBLE);
-        ecrire_case(&plateau, 5, 4, MUR_DESTRUCTIBLE);
 
         while(!quitter) {
                 deplacer_personnage(&p, 0, 0);
@@ -30,10 +27,12 @@ int main(){
 
                 dessiner_plateau(&plateau);
                 dessiner_personnage(p);
-
+                level1(&plateau);
                 MLV_actualise_window();
 
                 MLV_delay_according_to_frame_rate();
+
+                
 
                 if(MLV_get_keyboard_state(MLV_KEYBOARD_SPACE) == MLV_PRESSED) {
                         quitter = 1;
