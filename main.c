@@ -10,6 +10,7 @@
 
 int main(){
         int quitter = 0;
+        int est_menu_principale_ouvert = 0;
         int est_menu_ouvert = 0;
 
 
@@ -18,9 +19,19 @@ int main(){
 
         MLV_change_frame_rate(FPS);
 
-        
+        afficher_menu_principale();  
+        MLV_actualise_window();
+        while(!est_menu_principale_ouvert) {
+                if(MLV_get_keyboard_state(MLV_KEYBOARD_e) == MLV_PRESSED) { /*pour l'instant c'est la touche 'e' mais ca va devnir clique souris sur l'emplacement nouvelle partie*/
+                        MLV_wait_milliseconds(35);
+                        if(MLV_get_keyboard_state(MLV_KEYBOARD_e) == MLV_RELEASED) {
+                                est_menu_principale_ouvert = !est_menu_principale_ouvert;
+                        }
+                }
+        }
 
         while(!quitter) {
+
                 deplacer_personnage(&p, 0, 0);
                 MLV_clear_window(MLV_COLOR_BLACK);
                 dessiner_personnage(p);

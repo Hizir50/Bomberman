@@ -4,8 +4,8 @@ LFLAGS = -lMLV -lm
 
 
 
-Bomberman: main.o affichage.o personnage.o bombe.o menu.o
-	$(CC) -o Bomberman main.o affichage.o personnage.o bombe.o menu.o $(CFLAGS) $(LFLAGS)
+Bomberman: main.o affichage.o personnage.o  menu.o
+	$(CC) -o Bomberman main.o affichage.o personnage.o menu.o $(CFLAGS) $(LFLAGS)
 
 main.o: main.c affichage.c personnage.c bombe.h
 	$(CC) $(CFLAGS) -o main.o -c main.c
