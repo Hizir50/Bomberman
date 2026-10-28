@@ -5,8 +5,14 @@
 
 /*TAILLE FENETRE*/
 
-#define HAUTEUR MLV_get_desktop_height()
-#define LARGEUR MLV_get_desktop_width()
+#define HAUTEUR_ECRAN MLV_get_desktop_height()
+#define LARGEUR_ECRAN MLV_get_desktop_width()
+
+#define HAUTEUR_FENETRE (HAUTEUR_ECRAN-(HAUTEUR_ECRAN/8))
+#define LARGEUR_FENETRE (LARGEUR_ECRAN-(LARGEUR_ECRAN/8))
+
+
+
 
 
 void afficher_fenetre_principale();
