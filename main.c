@@ -1,29 +1,46 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <MLV/MLV_all.h>
+#include "affichage.h"
+#include "personnage.h"
+#include "menu.h"
 
+#define FPS 60
 
 
 int main(){
-        int width;
-        int height;
+        int quitter = 0;
+        int est_menu_ouvert = 0;
 
-        width = MLV_get_desktop_width() - MLV_get_desktop_width() / 6;
-        height = MLV_get_desktop_height() - MLV_get_desktop_height() / 6;
 
-        MLV_create_window(
-                "medium - 12 - Le résolution du bureau d'environement", 
-                "résolution du bureau", width, height
-        );
-        MLV_draw_text(
-                20, 20,
-                "La résolution du bureau est de : %d X %d",
-                MLV_COLOR_GREEN,
-                width, height
-        );
+        Personnage p = creer_personnage(100, 100);
+        afficher_fenetre_principale();
+
+        MLV_change_frame_rate(FPS);
+
         
-        MLV_actualise_window();
-        MLV_wait_seconds(2);
+
+        while(!quitter) {
+                deplacer_personnage(&p, 0, 0);
+                MLV_clear_window(MLV_COLOR_BLACK);
+                dessiner_personnage(p);
+                
+
+                if(MLV_get_keyboard_state(MLV_KEYBOARD_ESCAPE) == MLV_PRESSED) {
+                        quitter = 1;
+                }
+                if(MLV_get_keyboard_state(MLV_KEYBOARD_m) == MLV_PRESSED) {
+                        MLV_wait_milliseconds(35);
+                        if(MLV_get_keyboard_state(MLV_KEYBOARD_m) == MLV_RELEASED) {
+                                est_menu_ouvert = !est_menu_ouvert;
+                        }
+                }
+                if (est_menu_ouvert) {
+                        afficher_menu_pause();
+                }
+                MLV_actualise_window();
+                MLV_delay_according_to_frame_rate();
+        }
         MLV_free_window();
         return 0;
 }
