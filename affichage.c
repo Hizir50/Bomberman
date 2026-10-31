@@ -1,7 +1,7 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "affichage.h"
 #include "personnage.h"
+#include "bombe.h"
 
 
 void dessiner_personnage(Personnage p) {
@@ -10,10 +10,9 @@ void dessiner_personnage(Personnage p) {
 
 void afficher_fenetre_principale() {
     MLV_create_window(
-        "medium - 12 - Le résolution du bureau d'environement",
-        "résolution du bureau", LARGEUR-LARGEUR/6, HAUTEUR-HAUTEUR/6
+        "medium - 12 - Le résolution du bureau d'environement", 
+        "résolution du bureau", LARGEUR_FENETRE, HAUTEUR_FENETRE
     );
-}
 
 int largeur_fenetre() {
     return LARGEUR - LARGEUR/6;
