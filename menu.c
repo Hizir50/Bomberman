@@ -1,22 +1,43 @@
 #include <MLV/MLV_all.h>
 #include "menu.h"
 #include "affichage.h"
+#include "jeu.h"
 
-void afficher_menu_principale(){
-    MLV_clear_window(MLV_COLOR_YELLOW);
-
-    MLV_draw_text_box(LARGEUR_FENETRE/3, HAUTEUR_FENETRE-(HAUTEUR_FENETRE/3)*2.5, LARGEUR_FENETRE/3, 50, "NOUVELLE PARTIE", 1, MLV_COLOR_WHITE, MLV_COLOR_WHITE, MLV_COLOR_GREEN, MLV_TEXT_LEFT, MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER);
-
-    MLV_draw_text_box(LARGEUR_FENETRE/3, HAUTEUR_FENETRE-(HAUTEUR_FENETRE/3)*1.5, LARGEUR_FENETRE/3, 50, "CHARGER", 1, MLV_COLOR_WHITE, MLV_COLOR_WHITE, MLV_COLOR_BLUE, MLV_TEXT_LEFT, MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER);
-
-    MLV_draw_text_box(LARGEUR_FENETRE/3, HAUTEUR_FENETRE-(HAUTEUR_FENETRE/3)*0.5, LARGEUR_FENETRE/3, 50, "MEILLEURS SCORES", 1, MLV_COLOR_WHITE, MLV_COLOR_WHITE, MLV_COLOR_RED, MLV_TEXT_LEFT, MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER);
+int cliquer_nouvelle_partie(int x, int y) {
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_NP_Y && y <= BTN_NP_Y + BTN_H) {
+        return 1; /* Clic valide ! */
+        
+    }
+    return 0;
 }
 
-void afficher_menu_pause(){
-    MLV_clear_window(MLV_COLOR_GREY);
-    MLV_draw_text_box(LARGEUR_FENETRE/3, HAUTEUR_FENETRE-(HAUTEUR_FENETRE/3)*2.5, LARGEUR_FENETRE/3, 50, "REPRENDRE", 1, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_COLOR_BLACK, MLV_TEXT_LEFT, MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER);
-
-    MLV_draw_text_box(LARGEUR_FENETRE/3, HAUTEUR_FENETRE-(HAUTEUR_FENETRE/3)*1.5, LARGEUR_FENETRE/3, 50, "SAUVEGARDER", 1, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_COLOR_BLACK, MLV_TEXT_LEFT, MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER);
-
-    MLV_draw_text_box(LARGEUR_FENETRE/3, HAUTEUR_FENETRE-(HAUTEUR_FENETRE/3)*0.5, LARGEUR_FENETRE/3, 50, "QUITTER", 1, MLV_COLOR_BLACK, MLV_COLOR_WHITE, MLV_COLOR_BLACK, MLV_TEXT_LEFT, MLV_HORIZONTAL_CENTER, MLV_VERTICAL_CENTER);
+int cliquer_charger(int x,int y) {
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_CH_Y && y <= BTN_CH_Y + BTN_H) {
+        return 1; /* Clic valide ! */
+    }
+    return 0;
 }
+
+int cliquer_meilleurs_scores(int x,int y) {
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_MS_Y && y <= BTN_MS_Y + BTN_H) {
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_quitter(int x, int y){
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_QU_Y && y <= BTN_QU_Y + BTN_H) {
+        return 1;
+    }
+    return 0;
+}
+
+int cliquer_retour(int x,int y){
+    if(x >= BTN_RE_X && x <= BTN_RE_X + BTN_RE_L && y >= BTN_RE_Y && y <= BTN_RE_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+
+
