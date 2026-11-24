@@ -5,7 +5,7 @@
 #include "generation.h"
 #include "menu.h"
 
-#define FPS 60
+#define FPS 30
 
 
 int main(){
@@ -76,10 +76,21 @@ int main(){
                         while(est_menu_ouvert) {
                                 event = MLV_get_event(NULL, NULL, NULL, NULL, NULL, &x, &y, NULL, &state);
                                 if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
-                                        if(cliquer_retour(x, y)) { /* A CHANGER clique_retour deviens clique quitter jeu*/
+                                        if(cliquer_reprendre(x, y)) { /* A CHANGER clique_retour deviens clique quitter jeu*/
                                                 est_menu_ouvert = !est_menu_ouvert;
                                         }
                                 }
+                                if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
+                                        if(cliquer_sauvegarder(x, y)) { /* A CHANGER clique_retour deviens clique quitter jeu*/
+                                                est_menu_ouvert = !est_menu_ouvert;
+                                        }
+                                }
+                                if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
+                                        if(cliquer_menu_principal(x, y)) { /* A CHANGER clique_retour deviens clique quitter jeu*/
+                                                est_menu_ouvert = !est_menu_ouvert;
+                                                est_menu_principale_ouvert = !est_menu_principale_ouvert;
+                                        }
+                                }       
                                 if(event == MLV_KEY && sym == MLV_KEYBOARD_ESCAPE && state == MLV_RELEASED) {
                                         est_menu_ouvert = !est_menu_ouvert;
                                 }

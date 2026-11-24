@@ -39,5 +39,24 @@ int cliquer_retour(int x,int y){
     return 0;
 }
 
+int cliquer_reprendre(int x,int y){
+    if(x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_RP_Y && y <= BTN_RP_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
 
+int cliquer_sauvegarder(int x,int y){
+    if(x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_SA_Y && y <= BTN_SA_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_menu_principal(int x,int y){
+    if(x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_MP_Y && y <= BTN_MP_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
 
