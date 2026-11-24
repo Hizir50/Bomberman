@@ -30,10 +30,41 @@ void afficher_menu_principale(){
 void afficher_ecran_charger(){
     MLV_clear_window(MLV_COLOR_ALICEBLUE);
 
-    /*Bouton*/
+    /*Bouton Retour*/
     MLV_draw_rectangle(BTN_RE_X,BTN_RE_Y,BTN_RE_L,BTN_H,MLV_COLOR_BLACK);
 
-    MLV_draw_rectangle(LARGEUR_FENETRE/4,HAUTEUR_FENETRE-(HAUTEUR_FENETRE/2)*1.5,100,100,MLV_COLOR_BLACK);
+    /*Emplacements des slots de sauvegarde*/
+    /**/
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S1_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S2_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S3_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S4_Y,100,100,MLV_COLOR_BLACK);
+
+    /*Emplacements des informations sur les sauvegardes*/
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S1_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S2_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S3_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S4_Y,400,100,MLV_COLOR_BLACK);
+}
+
+void afficher_ecran_sauvegarder(){
+    MLV_clear_window(MLV_COLOR_ALICEBLUE);
+
+    /*Bouton Retour*/
+    MLV_draw_rectangle(BTN_RE_X,BTN_RE_Y,BTN_RE_L,BTN_H,MLV_COLOR_BLACK);
+
+    /*Emplacements des slots de sauvegarde*/
+    /**/
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S1_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S2_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S3_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S4_Y,100,100,MLV_COLOR_BLACK);
+
+    /*Emplacements des informations sur les sauvegardes*/
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S1_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S2_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S3_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S4_Y,400,100,MLV_COLOR_BLACK);
 }
 
 void afficher_menu_pause(){
