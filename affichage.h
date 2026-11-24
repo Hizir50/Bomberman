@@ -13,7 +13,7 @@ void afficher_menu_pause();
 void afficher_ecran_charger();
 void afficher_menu_principale();
 void afficher_meilleur_scores();
-
+void afficher_ecran_sauvegarder();
 void afficher_fenetre_principale();
 void dessiner_personnage(Personnage p);
 

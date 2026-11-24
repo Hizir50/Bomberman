@@ -4,6 +4,7 @@
 #include "personnage.h"
 #include "generation.h"
 #include "menu.h"
+#include "sauvegarde.h"
 
 #define FPS 30
 
@@ -12,6 +13,7 @@ int main(){
         int quitter = 0;
         int est_menu_principale_ouvert = 0;
         int est_menu_ouvert = 0;
+        int est_sauvegarde_ouvert = 0;
         int afficher_charger = 0;
         int afficher_scores = 0;
         int x,y;
@@ -83,6 +85,7 @@ int main(){
                                 if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
                                         if(cliquer_sauvegarder(x, y)) { /* A CHANGER clique_retour deviens clique quitter jeu*/
                                                 est_menu_ouvert = !est_menu_ouvert;
+                                                est_sauvegarde_ouvert = !est_sauvegarde_ouvert;
                                         }
                                 }
                                 if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
@@ -96,6 +99,32 @@ int main(){
                                 }
                         }
                 }
+
+                if(est_sauvegarde_ouvert) {
+                        afficher_ecran_sauvegarder();
+                        MLV_actualise_window();
+                        while(est_sauvegarde_ouvert) {
+                                event = MLV_get_event(NULL, NULL, NULL, NULL, NULL, &x, &y, NULL, &state);
+                                if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
+                                        if(cliquer_retour(x, y)) {
+                                                est_menu_ouvert = !est_menu_ouvert;
+                                                est_sauvegarde_ouvert = !est_sauvegarde_ouvert;
+                                        }
+                                        if(cliquer_slot_1(x, y)) {
+                                                sauvegarder_partie("slot1.txt", &plateau, &p);
+                                        }
+                                        if(cliquer_slot_2(x, y)) {
+                                                sauvegarder_partie("slot2.txt", &plateau, &p);
+                                        }
+                                        if(cliquer_slot_3(x, y)) {
+                                                sauvegarder_partie("slot3.txt", &plateau, &p);
+                                        }
+                                        if(cliquer_slot_4(x, y)) {
+                                                sauvegarder_partie("slot4.txt", &plateau, &p);
+                                        }
+                                }
+                        }
+                }
                 
                 /*---Ouverture et fermeture du menu charger---*/
                 if(afficher_charger) {
@@ -106,6 +135,22 @@ int main(){
                                 if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
                                         if(cliquer_retour(x, y)) {
                                                 est_menu_principale_ouvert = !est_menu_principale_ouvert;
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_1(x, y)) {
+                                                charger_partie("slot1.txt", &plateau, &p);
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_2(x, y)) {
+                                                charger_partie("slot2.txt", &plateau, &p);
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_3(x, y)) {
+                                                charger_partie("slot3.txt", &plateau, &p);
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_4(x, y)) {
+                                                charger_partie("slot4.txt", &plateau, &p);
                                                 afficher_charger = !afficher_charger;
                                         }
                                 }

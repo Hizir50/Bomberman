@@ -60,3 +60,30 @@ int cliquer_menu_principal(int x,int y){
     return 0;
 }
 
+int cliquer_slot_1(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S1_Y && y <= BTN_S1_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_slot_2(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S2_Y && y <= BTN_S2_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_slot_3(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S3_Y && y <= BTN_S3_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_slot_4(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S4_Y && y <= BTN_S4_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
