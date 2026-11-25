@@ -4,7 +4,10 @@
 #include <stdbool.h>
 #include <time.h>
 
-#define PORTEE_EXPLOSION 1
+#define PORTEE_EXPLOSION_COLONNE 1
+#define PORTEE_EXPLOSION_LIGNE  1
+#define DUREE_BOMBE 2.0     
+#define DUREE_EXPLOSION 0.5 
 
 typedef struct {
     int x;

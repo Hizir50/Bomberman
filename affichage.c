@@ -3,6 +3,7 @@
 #include "affichage.h"
 #include "personnage.h"
 #include "bombe.h"
+#include "jeu.h"
 
 
 void dessiner_personnage(Personnage p) {
@@ -16,32 +17,37 @@ void afficher_fenetre_principale() {
     );
 }
 
+void dessiner_ennemi(Ennemi e){
+    MLV_draw_filled_circle(e.x, e.y, TAILLE_PERSONNAGE, MLV_COLOR_PURPLE);
+}
+
 
 void dessiner_bombe_et_explosion(Bombe b) {
+    int centre_y, centre_x, rayon, t, portee_l, portee_c;
     if (b.active) {
-        int centre_x = b.x + TAILLE_PERSONNAGE / 2;
-        int centre_y = b.y + TAILLE_PERSONNAGE / 2;
-        int rayon = TAILLE_PERSONNAGE / 2;
+        centre_x = b.x + TAILLE_PERSONNAGE / 2;
+        centre_y = b.y + TAILLE_PERSONNAGE / 2;
+        rayon = TAILLE_PERSONNAGE / 2;
         MLV_draw_filled_circle(centre_x, centre_y, rayon, MLV_COLOR_RED);
         MLV_draw_circle(centre_x, centre_y, rayon, MLV_COLOR_BLACK);
     } else if (b.en_explosion) {
-        int t = TAILLE_PERSONNAGE;
-        int portee = PORTEE_EXPLOSION;
-
+        t = TAILLE_PERSONNAGE;
+        portee_c = PORTEE_EXPLOSION_COLONNE;
+        portee_l = PORTEE_EXPLOSION_LIGNE;
+        
         /* explosion haut */
-        MLV_draw_filled_rectangle(b.x, b.y - portee * t, t, portee * t, MLV_COLOR_YELLOW);
-        MLV_draw_rectangle(b.x, b.y - portee * t, t, portee * t, MLV_COLOR_ORANGE);
-
+        MLV_draw_filled_rectangle(b.x, b.y - portee_c * t, t, portee_c * t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x, b.y - portee_c * t, t, portee_c * t, MLV_COLOR_ORANGE);
         /* explosion bas */
-        MLV_draw_filled_rectangle(b.x, b.y + t, t, portee * t, MLV_COLOR_YELLOW);
-        MLV_draw_rectangle(b.x, b.y + t, t, portee * t, MLV_COLOR_ORANGE);
+        MLV_draw_filled_rectangle(b.x, b.y + t, t, portee_c * t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x, b.y + t, t, portee_c * t, MLV_COLOR_ORANGE);
 
         /* explosion gauche */
-        MLV_draw_filled_rectangle(b.x - portee * t, b.y, portee * t, t, MLV_COLOR_YELLOW);
-        MLV_draw_rectangle(b.x - portee * t, b.y, portee * t, t, MLV_COLOR_ORANGE);
+        MLV_draw_filled_rectangle(b.x - portee_l * t, b.y, portee_l * t, t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x - portee_l * t, b.y, portee_l * t, t, MLV_COLOR_ORANGE);
 
         /* explosion droite */
-        MLV_draw_filled_rectangle(b.x + t, b.y, portee * t, t, MLV_COLOR_YELLOW);
-        MLV_draw_rectangle(b.x + t, b.y, portee * t, t, MLV_COLOR_ORANGE);
+        MLV_draw_filled_rectangle(b.x + t, b.y, portee_l * t, t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x + t, b.y, portee_l * t, t, MLV_COLOR_ORANGE);
     }
 }

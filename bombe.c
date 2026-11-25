@@ -3,8 +3,6 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define DUREE_BOMBE 2.0     
-#define DUREE_EXPLOSION 0.5 
 
 static double obtenir_temps_actuel(void) {
     struct timespec ts;

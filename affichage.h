@@ -1,6 +1,7 @@
 #ifndef _AFFICHAGE_H_
 #define _AFFICHAGE_H_
 #include "personnage.h"
+#include "jeu.h"
 #include "bombe.h"
 #include <MLV/MLV_all.h>
 
@@ -13,5 +14,6 @@
 void afficher_fenetre_principale();
 void dessiner_personnage(Personnage p);
 void dessiner_bombe_et_explosion(Bombe b);
+void dessiner_ennemi(Ennemi e);
 
 #endif /* _AFFICHAGE_H_ */
