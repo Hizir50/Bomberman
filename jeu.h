@@ -21,3 +21,4 @@ Ennemi creer_ennemi();
 void deplacement_ennemi(Ennemi *e);
 
 #endif
+#endif /* _JEU_H_ */

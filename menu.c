@@ -1,0 +1,89 @@
+#include <MLV/MLV_all.h>
+#include "menu.h"
+#include "affichage.h"
+#include "jeu.h"
+
+int cliquer_nouvelle_partie(int x, int y) {
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_NP_Y && y <= BTN_NP_Y + BTN_H) {
+        return 1; /* Clic valide ! */
+        
+    }
+    return 0;
+}
+
+int cliquer_charger(int x,int y) {
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_CH_Y && y <= BTN_CH_Y + BTN_H) {
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_meilleurs_scores(int x,int y) {
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_MS_Y && y <= BTN_MS_Y + BTN_H) {
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_quitter(int x, int y){
+    if (x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_QU_Y && y <= BTN_QU_Y + BTN_H) {
+        return 1;
+    }
+    return 0;
+}
+
+int cliquer_retour(int x,int y){
+    if(x >= BTN_RE_X && x <= BTN_RE_X + BTN_RE_L && y >= BTN_RE_Y && y <= BTN_RE_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_reprendre(int x,int y){
+    if(x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_RP_Y && y <= BTN_RP_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_sauvegarder(int x,int y){
+    if(x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_SA_Y && y <= BTN_SA_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_menu_principal(int x,int y){
+    if(x >= BTN_X && x <= BTN_X + BTN_L && y >= BTN_MP_Y && y <= BTN_MP_Y + BTN_H){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_slot_1(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S1_Y && y <= BTN_S1_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_slot_2(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S2_Y && y <= BTN_S2_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_slot_3(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S3_Y && y <= BTN_S3_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
+
+int cliquer_slot_4(int x,int y){
+    if(x >= LARGEUR_FENETRE/4 && x <= LARGEUR_FENETRE/4 + 100 && y >= BTN_S4_Y && y <= BTN_S4_Y + 100){
+        return 1; /* Clic valide ! */
+    }
+    return 0;
+}
