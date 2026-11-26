@@ -4,8 +4,8 @@ LFLAGS = -lMLV -lm
 
 
 
-Bomberman: main.o affichage.o personnage.o generation.o menu.o
-	$(CC) -o Bomberman main.o affichage.o personnage.o generation.o menu.o $(CFLAGS) $(LFLAGS)
+Bomberman: main.o affichage.o personnage.o generation.o menu.o sauvegarde.o jeu.o bombe.o
+	$(CC) -o Bomberman main.o affichage.o personnage.o generation.o menu.o sauvegarde.o jeu.o bombe.o $(CFLAGS) $(LFLAGS)
 
 main.o: main.c affichage.c personnage.c bombe.h
 	$(CC) $(CFLAGS) -o main.o -c main.c
@@ -22,7 +22,14 @@ generation.o: generation.c generation.h
 menu.o: menu.c menu.h 
 	$(CC) $(CFLAGS) -o menu.o -c menu.c
 
+sauvegarde.o: sauvegarde.c sauvegarde.h
+	$(CC) $(CFLAGS) -o sauvegarde.o -c sauvegarde.c
 
+jeu.o: jeu.c jeu.h
+	$(CC) $(CFLAGS) -o jeu.o -c jeu.c
+
+bombe.o: bombe.c bombe.h
+	$(CC) $(CFLAGS) -o bombe.o -c bombe.c
 
 clean:
 	rm -rf Bomberman *.o *~

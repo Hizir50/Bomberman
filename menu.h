@@ -17,10 +17,15 @@
 #define BTN_SA_Y (HAUTEUR_FENETRE / 5) + 300
 #define BTN_MP_Y (HAUTEUR_FENETRE / 5) + 600
 
-
 #define BTN_RE_X 50
 #define BTN_RE_Y 50
 #define BTN_RE_L LARGEUR_FENETRE / 4
+
+#define BTN_S1_Y (HAUTEUR_FENETRE / 5) 
+#define BTN_S2_Y (HAUTEUR_FENETRE / 5) + 200
+#define BTN_S3_Y (HAUTEUR_FENETRE / 5) + 400
+#define BTN_S4_Y (HAUTEUR_FENETRE / 5) + 600
+
 
 
 
@@ -32,6 +37,11 @@ int cliquer_retour(int x,int y);
 int cliquer_reprendre(int x,int y);
 int cliquer_sauvegarder(int x,int y);
 int cliquer_menu_principal(int x,int y);
+
+int cliquer_slot_1(int x,int y);
+int cliquer_slot_2(int x,int y);
+int cliquer_slot_3(int x,int y);
+int cliquer_slot_4(int x,int y);
 
 
 

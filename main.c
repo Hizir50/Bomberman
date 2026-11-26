@@ -2,8 +2,11 @@
 #include <stdio.h>
 #include "affichage.h"
 #include "personnage.h"
+#include "bombe.h"
+#include "jeu.h"
 #include "generation.h"
 #include "menu.h"
+#include "sauvegarde.h"
 
 #define FPS 30
 
@@ -12,6 +15,7 @@ int main(){
         int quitter = 0;
         int est_menu_principale_ouvert = 0;
         int est_menu_ouvert = 0;
+        int est_sauvegarde_ouvert = 0;
         int afficher_charger = 0;
         int afficher_scores = 0;
         int x,y;
@@ -21,11 +25,13 @@ int main(){
         Plateau plateau;
 
         Personnage p = creer_personnage(100, 100);
+        Bombe b = creer_bombe();
+        Ennemi e = creer_ennemi();
         afficher_fenetre_principale();
         MLV_change_frame_rate(FPS);
         initialiser_plateau(&plateau);
 
-        while(!quitter) {
+        while(!quitter) {                
                 
                 MLV_actualise_window();
                 MLV_delay_according_to_frame_rate();
@@ -56,17 +62,31 @@ int main(){
                         }
                 }
 
+                
+
+
+                
+                
                 /* ---Jeu---*/
-                deplacer_personnage(&p, 0, 0);
                 dessiner_plateau(&plateau);
                 dessiner_personnage(p);
+                dessiner_ennemi(e);
+
+
+                deplacer_personnage(&p, 0, 0);
+                mettre_a_jour_bombe(&b);
+                deplacement_ennemi(&e);
+                dessiner_bombe_et_explosion(b);
+                
                 level1(&plateau);
-                dessiner_personnage(p);
 
                 /*---Menu Pause In GAME---*/
                 event = MLV_get_event(&sym, NULL, NULL, NULL, NULL, NULL, NULL, NULL, &state);
                 if(event == MLV_KEY && sym == MLV_KEYBOARD_ESCAPE && state == MLV_RELEASED && est_menu_principale_ouvert) {
                         est_menu_ouvert = !est_menu_ouvert;
+                }
+                if(event == MLV_KEY && sym == MLV_KEYBOARD_SPACE && state == MLV_RELEASED) {
+                        poser_bombe(&b, p.x, p.y);
                 }
 
                 /*---Ouverture et fermeture du menu pause---*/
@@ -83,6 +103,7 @@ int main(){
                                 if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
                                         if(cliquer_sauvegarder(x, y)) { /* A CHANGER clique_retour deviens clique quitter jeu*/
                                                 est_menu_ouvert = !est_menu_ouvert;
+                                                est_sauvegarde_ouvert = !est_sauvegarde_ouvert;
                                         }
                                 }
                                 if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
@@ -96,6 +117,32 @@ int main(){
                                 }
                         }
                 }
+
+                if(est_sauvegarde_ouvert) {
+                        afficher_ecran_sauvegarder();
+                        MLV_actualise_window();
+                        while(est_sauvegarde_ouvert) {
+                                event = MLV_get_event(NULL, NULL, NULL, NULL, NULL, &x, &y, NULL, &state);
+                                if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
+                                        if(cliquer_retour(x, y)) {
+                                                est_menu_ouvert = !est_menu_ouvert;
+                                                est_sauvegarde_ouvert = !est_sauvegarde_ouvert;
+                                        }
+                                        if(cliquer_slot_1(x, y)) {
+                                                sauvegarder_partie("slot1.txt", &plateau, &p);
+                                        }
+                                        if(cliquer_slot_2(x, y)) {
+                                                sauvegarder_partie("slot2.txt", &plateau, &p);
+                                        }
+                                        if(cliquer_slot_3(x, y)) {
+                                                sauvegarder_partie("slot3.txt", &plateau, &p);
+                                        }
+                                        if(cliquer_slot_4(x, y)) {
+                                                sauvegarder_partie("slot4.txt", &plateau, &p);
+                                        }
+                                }
+                        }
+                }
                 
                 /*---Ouverture et fermeture du menu charger---*/
                 if(afficher_charger) {
@@ -106,6 +153,22 @@ int main(){
                                 if(event == MLV_MOUSE_BUTTON && state == MLV_RELEASED) {
                                         if(cliquer_retour(x, y)) {
                                                 est_menu_principale_ouvert = !est_menu_principale_ouvert;
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_1(x, y)) {
+                                                charger_partie("slot1.txt", &plateau, &p);
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_2(x, y)) {
+                                                charger_partie("slot2.txt", &plateau, &p);
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_3(x, y)) {
+                                                charger_partie("slot3.txt", &plateau, &p);
+                                                afficher_charger = !afficher_charger;
+                                        }
+                                        if(cliquer_slot_4(x, y)) {
+                                                charger_partie("slot4.txt", &plateau, &p);
                                                 afficher_charger = !afficher_charger;
                                         }
                                 }

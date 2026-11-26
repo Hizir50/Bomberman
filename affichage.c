@@ -2,6 +2,7 @@
 #include "personnage.h"
 #include "menu.h"
 #include "bombe.h"
+#include "jeu.h"
 
 
 void dessiner_personnage(Personnage p) {
@@ -13,6 +14,42 @@ void afficher_fenetre_principale(){
         "medium - 12 - Le résolution du bureau d'environement", 
         "résolution du bureau", LARGEUR_FENETRE, HAUTEUR_FENETRE
     );
+}
+
+void dessiner_ennemi(Ennemi e){
+    MLV_draw_filled_circle(e.x, e.y, TAILLE_PERSONNAGE, MLV_COLOR_PURPLE);
+}
+
+
+void dessiner_bombe_et_explosion(Bombe b) {
+    int centre_y, centre_x, rayon, t, portee_l, portee_c;
+    if (b.active) {
+        centre_x = b.x + TAILLE_PERSONNAGE / 2;
+        centre_y = b.y + TAILLE_PERSONNAGE / 2;
+        rayon = TAILLE_PERSONNAGE / 2;
+        MLV_draw_filled_circle(centre_x, centre_y, rayon, MLV_COLOR_RED);
+        MLV_draw_circle(centre_x, centre_y, rayon, MLV_COLOR_BLACK);
+    } else if (b.en_explosion) {
+        t = TAILLE_PERSONNAGE;
+        portee_c = PORTEE_EXPLOSION_COLONNE;
+        portee_l = PORTEE_EXPLOSION_LIGNE;
+        
+        /* explosion haut */
+        MLV_draw_filled_rectangle(b.x, b.y - portee_c * t, t, portee_c * t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x, b.y - portee_c * t, t, portee_c * t, MLV_COLOR_ORANGE);
+        /* explosion bas */
+        MLV_draw_filled_rectangle(b.x, b.y + t, t, portee_c * t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x, b.y + t, t, portee_c * t, MLV_COLOR_ORANGE);
+
+        /* explosion gauche */
+        MLV_draw_filled_rectangle(b.x - portee_l * t, b.y, portee_l * t, t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x - portee_l * t, b.y, portee_l * t, t, MLV_COLOR_ORANGE);
+
+        /* explosion droite */
+        MLV_draw_filled_rectangle(b.x + t, b.y, portee_l * t, t, MLV_COLOR_YELLOW);
+        MLV_draw_rectangle(b.x + t, b.y, portee_l * t, t, MLV_COLOR_ORANGE);
+
+    }
 }
 
 void afficher_menu_principale(){
@@ -30,10 +67,41 @@ void afficher_menu_principale(){
 void afficher_ecran_charger(){
     MLV_clear_window(MLV_COLOR_ALICEBLUE);
 
-    /*Bouton*/
+    /*Bouton Retour*/
     MLV_draw_rectangle(BTN_RE_X,BTN_RE_Y,BTN_RE_L,BTN_H,MLV_COLOR_BLACK);
 
-    MLV_draw_rectangle(LARGEUR_FENETRE/4,HAUTEUR_FENETRE-(HAUTEUR_FENETRE/2)*1.5,100,100,MLV_COLOR_BLACK);
+    /*Emplacements des slots de sauvegarde*/
+    /**/
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S1_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S2_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S3_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S4_Y,100,100,MLV_COLOR_BLACK);
+
+    /*Emplacements des informations sur les sauvegardes*/
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S1_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S2_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S3_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S4_Y,400,100,MLV_COLOR_BLACK);
+}
+
+void afficher_ecran_sauvegarder(){
+    MLV_clear_window(MLV_COLOR_ALICEBLUE);
+
+    /*Bouton Retour*/
+    MLV_draw_rectangle(BTN_RE_X,BTN_RE_Y,BTN_RE_L,BTN_H,MLV_COLOR_BLACK);
+
+    /*Emplacements des slots de sauvegarde*/
+    /**/
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S1_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S2_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S3_Y,100,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/4,BTN_S4_Y,100,100,MLV_COLOR_BLACK);
+
+    /*Emplacements des informations sur les sauvegardes*/
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S1_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S2_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S3_Y,400,100,MLV_COLOR_BLACK);
+    MLV_draw_rectangle(LARGEUR_FENETRE/2,BTN_S4_Y,400,100,MLV_COLOR_BLACK);
 }
 
 void afficher_menu_pause(){
